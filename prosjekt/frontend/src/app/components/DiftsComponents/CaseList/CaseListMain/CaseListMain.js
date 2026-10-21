@@ -44,6 +44,7 @@ export default function CaseListMain() {
                             <h3>Bygg {sak.buildingID} - Rom {sak.roomID}</h3>
                             <p>Prioritet: {sak.Seriousness}</p>
                             <p>Beskrivelse: {sak.description}</p>
+                            <img src={sak.bilde} />
                             <p>Meldt inn: {new Date(sak.CreatedDate).toLocaleDateString("no-NO")}</p> {/* This works with mmsql apperantly */}
                         </div>
                     ))

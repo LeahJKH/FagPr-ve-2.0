@@ -1,10 +1,12 @@
 'use client'
 
+import { redirect } from 'next/navigation';
 import style from './sidemenu.module.css'
 import { useState, useEffect } from 'react'
 export default function SideMenu({chosenBuilding, chosenRoom, rD, bD}) {
     const [isMobile, setIsMobile] = useState(false);
     const [isOpen, setIsOpen] = useState(false)
+    const [FullData, setFullData] = useState([])
 
     const handleOpen = () => {
         setIsOpen(!isOpen)
@@ -26,21 +28,38 @@ export default function SideMenu({chosenBuilding, chosenRoom, rD, bD}) {
     useEffect(() => {
 
         async function getData() {
-            const response = await fetch(`http://localhost:3200/api/v1/bygg/${bD}/rom`, {
-                method: 'GET',
-                headers: {
-                    'X-API-Key': 'tindvik-test-2026',
-                    'Content-Type': 'application/json' 
-                } 
-            });
-            if (!response.ok) {
-                console.log(`${response.status}`)
-            }
-            let data = await response.json();
-            console.log(data)
+                        try {
+       const response = await fetch("http://localhost:5000/api/TAPI", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+            Bd: bD,
+            })
+        })
+        
+    
+        const data = await response.json() // wait for data
+        setFullData(data.data)
+       if (!response.ok) {
+            console.log(data.message) // send error msg from backend
+            return
         }
+        } catch (err) {
+        console.error(err)
+        }
+        
+    }
         getData()
     }, [bD])
+    
+    function changeRoom(room, rid) {
+        redirect(`http://localhost:3000/Report?building=Solsiden,%20blokk%20C&room=${room}&BD=B-3003&RD=${rid}`)
+    }
+
+
+
     return (
         <>
         <aside className={style.aside}>
@@ -58,6 +77,9 @@ export default function SideMenu({chosenBuilding, chosenRoom, rD, bD}) {
                  <div className={isMobile? style.MobileRoomData: style.Roomcont}>
                     <button onClick={handleOpen}>X</button>
                     <div className={style.roomData}>
+                        {FullData.map((res) => {
+                        return <p className={style.pStyle} onClick={(e) => changeRoom(res.navn, res.id)} key={res.id}>{res.navn}</p>
+                        })}
                     </div>
                 </div>:<></>}
             </section>

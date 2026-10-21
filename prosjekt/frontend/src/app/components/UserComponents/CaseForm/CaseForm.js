@@ -13,6 +13,7 @@ export default function CaseForm({ chosenBuilding, chosenRoom, rD, bD }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(bD)
         const formData = new FormData();
         formData.append("buildingID", bD);
         formData.append("roomID", rD);
