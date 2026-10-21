@@ -1,0 +1,22 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.27);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cont {
+    width: 90%;
+    height: 93%;
+    background-color: var(--sub-col-two);
+    padding: 17px 32px;
+}
+.CaseCont {
+    display: flex;
+    gap: 15px;
+}
+

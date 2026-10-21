@@ -12,11 +12,17 @@ justify-content: space-between;
 display: flex;
 justify-content: space-between;
 align-items: center;
-gap: 60%;
+gap: 17px;
 }
 .GraphCont {
 display: flex;
 flex-direction: column;
+}
+.GraphCont > div {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+gap: 5px;
 }
 .moreBtn {
     width: 100px;
@@ -31,3 +37,30 @@ flex-direction: column;
 background-color: transparent;
 color:var(--Text-opisite);
 }
+
+.progressBar {
+  appearance: none;
+  width: 200px; 
+  height: 15px; 
+  border: none;
+  box-shadow: 1px 0px 10px var(--shadow);
+  background-color: var(--sub-col); 
+}
+
+
+
+
+
+.progressBar::-moz-progress-bar {
+  border-radius: 8px;
+}
+
+
+.criticalBar::-webkit-progress-value { background-color: #ef4444; }
+.criticalBar::-moz-progress-bar { background-color: #ef4444; }
+
+.midBar::-webkit-progress-value { background-color: #f59e0b; }
+.midBar::-moz-progress-bar { background-color: #f59e0b; }
+
+.lowBar::-webkit-progress-value { background-color: #22c55e; }
+.lowBar::-moz-progress-bar { background-color: #22c55e; }

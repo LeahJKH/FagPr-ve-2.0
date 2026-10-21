@@ -1,10 +1,12 @@
 "use client"
-import CaseCard from './CaseCard/CaseCard';
+import CaseCard from '../CaseCard/CaseCard';
+import CaseListModal from '../CaseListModal/CaseListModal';
 import style from './CaseListMain.module.css'
 import { useState, useEffect } from 'react'
 
 export default function CaseListMain() {
     const [cases, setCases] = useState([]);
+    const [showFull, setShowFull] = useState(false)
 
     useEffect(() => {
         const fetchCases = async () => {
@@ -21,6 +23,11 @@ export default function CaseListMain() {
 
         fetchCases();
     }, []);
+
+    function setModal () {
+        setShowFull(!showFull)
+    }
+
     return (
         <main className={style.Main}>
             <section className={style.CaseOptionsCont}>
@@ -44,10 +51,11 @@ export default function CaseListMain() {
                     ))
                 ) : (
                     <p>Ingen saker funnet, eller laster data...</p>
-                )} {/* Burde flyttest til et komponent */}
+                )} 
             </section>
             
-            <button className={style.Fler}>Se flere</button>
+            <button className={style.Fler} onClick={setModal}>Se flere</button>
+                {showFull? <CaseListModal cases={cases} setModal={() => setModal}/>: <></>}
         </main>
     )
 }
