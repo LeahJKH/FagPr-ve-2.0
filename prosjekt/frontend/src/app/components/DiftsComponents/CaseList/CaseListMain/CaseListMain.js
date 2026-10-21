@@ -1,4 +1,5 @@
 "use client"
+import CaseCard from './CaseCard/CaseCard';
 import style from './CaseListMain.module.css'
 import { useState, useEffect } from 'react'
 
@@ -20,7 +21,6 @@ export default function CaseListMain() {
 
         fetchCases();
     }, []);
-    console.log(cases)
     return (
         <main className={style.Main}>
             <section className={style.CaseOptionsCont}>
@@ -40,13 +40,7 @@ export default function CaseListMain() {
             <section className={style.CaseVeiw}>
                 {cases.length > 0 ? (
                     cases.map((sak) => (
-                        <div key={sak.caseID} className={style.CaseCard}> 
-                            <h3>Bygg {sak.buildingID} - Rom {sak.roomID}</h3>
-                            <p>Prioritet: {sak.Seriousness}</p>
-                            <p>Beskrivelse: {sak.description}</p>
-                            <img src={sak.bilde} />
-                            <p>Meldt inn: {new Date(sak.CreatedDate).toLocaleDateString("no-NO")}</p> {/* This works with mmsql apperantly */}
-                        </div>
+                        <CaseCard key={sak.caseID} sak={sak}/>
                     ))
                 ) : (
                     <p>Ingen saker funnet, eller laster data...</p>
