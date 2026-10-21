@@ -7,6 +7,7 @@ import Cases from './routes/GET/cases.js'
 import Case from './routes/POST/Case.js'
 import Key from './routes/POST/key.js'
 import tAPI from './routes/POST/TAPI_Room.js'
+import CasePic from './routes/POST/CaseImg.js'
 
 // starting api under 5000 
 const app = express()
@@ -16,7 +17,7 @@ const port = 5000
 let allRoutes;
 // routes
 try {
-     allRoutes = [Key, Case, Cases, tAPI]
+     allRoutes = [Key, Case, Cases, tAPI, CasePic]
 } catch {
 console.log("error: couldnt get routes")
 }
