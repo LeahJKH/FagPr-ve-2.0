@@ -14,3 +14,9 @@ denne runden hadde jeg mer tid på meg men jeg har ikke brukt den så effektivt 
 ## tvist
 jeg vet jeg ikke vil få tid til tvisten så den ser jeg bort fra. men med løsningen som er no kan man identifisere bruker nøkkler og det vil ikke være for vansklig og lage en url som auto redirecter med nøkkel kan være jeg setter dette opp om det blir tid
 
+## FDV cors
+jeg ble blokket av cors fra og hente data i frontenden dette skal egentlig endres i FDV backenden men kan lage en proxy gjennom min egen backend.
+
+## størrelse
+prosjektet tar mye plass hvor og kjøre dette på en maskin ikke vil være optimal. jeg tok noen snarveier jeg ikke burde ha tatt men kan nå få faktisk bruk av prosjektet 
+

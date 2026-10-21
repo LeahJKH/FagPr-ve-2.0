@@ -1,6 +1,9 @@
 # Error handling
 
 ## D
+
+DATABASE errors 
+
 ### D.1
 this error is when you cant connect too your database because either the database does not exist and or the env variables is wrong. 
 
@@ -9,7 +12,11 @@ download the db files from the sql databases. latest version will be supported s
 
 if your env variables is wrong:
 please delete your .env file and supply the correct information. rmember case sensitivity. after deletion just restart the start script
+
 ## M
+
+Mount errors
+
 ### M.1
 this error happens when mounting wasnt correct. this stems from the routes not having an export
 
@@ -25,3 +32,7 @@ const router = express.Router()
 export default router
 ```
 as then you don't send out the right routes and it wont be able too mount
+
+## C
+
+### C.1

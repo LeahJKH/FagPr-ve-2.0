@@ -50,3 +50,13 @@ border: 1px solid var(--Text);
  background-color: var(--sub-col);
  height: fit-content;
 }
+.pStyle {
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 2em;
+    padding: 5px 2px;
+}
+.pStyle:hover {
+    background-color: var(--foreground);
+    color: var(--Text-opisite);
+}
