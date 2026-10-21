@@ -10,8 +10,8 @@ export default function Report() {
 
     const chosenBuilding = params.get("building")   
     const chosenRoom = params.get("room")
-    const rD = params.get("rD")
-    const bD = params.get("bD")
+    const rD = params.get("RD")
+    const bD = params.get("BD")
     
     return (
         <>
