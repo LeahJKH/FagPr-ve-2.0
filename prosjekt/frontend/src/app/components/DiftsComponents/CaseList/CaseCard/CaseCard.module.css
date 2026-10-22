@@ -1,3 +1,9 @@
 .CaseCard {
-    
+    width: 230px;
+    background-color: var(--sub-col);
+    color: var(--Text);
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

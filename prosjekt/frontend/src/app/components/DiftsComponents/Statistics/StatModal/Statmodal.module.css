@@ -15,3 +15,6 @@
     background-color: var(--sub-col-two);
     padding: 17px 32px;
 }
+.graphs {
+    width: 90%;
+}

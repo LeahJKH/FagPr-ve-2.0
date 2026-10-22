@@ -13,10 +13,12 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 gap: 17px;
+width: 80%;
 }
 .GraphCont {
 display: flex;
 flex-direction: column;
+width: 30%;
 }
 .GraphCont > div {
 display: flex;
@@ -40,7 +42,7 @@ color:var(--Text-opisite);
 
 .progressBar {
   appearance: none;
-  width: 200px; 
+  width: 100%; 
   height: 15px; 
   border: none;
   box-shadow: 1px 0px 10px var(--shadow);

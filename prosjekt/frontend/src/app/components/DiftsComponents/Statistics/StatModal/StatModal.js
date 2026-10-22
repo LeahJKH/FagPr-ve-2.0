@@ -45,7 +45,7 @@ export default function StatModal(props) {
             <main className={style.overlay} onClick={props.setModal}>
                 <div className={style.cont} onClick={(e) => e.stopPropagation()}>
                     <p style={{cursor: 'pointer'}} onClick={props.setModal}>x</p>
-                    <section>
+                    <section className={style.graphs}>
                         <canvas ref={chartRef} width={300} height={300}></canvas>
                     </section>
                 </div>
