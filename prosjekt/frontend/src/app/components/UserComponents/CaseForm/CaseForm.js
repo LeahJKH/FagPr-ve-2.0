@@ -2,18 +2,26 @@ import style from './caseform.module.css'
 import {useState} from 'react'
 
 export default function CaseForm({ chosenBuilding, chosenRoom, rD, bD }) {
-    const [name, setName] = useState("");
+const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [tlf, settlf] = useState("");
+    const [tlf, setTlf] = useState("");
     const [description, setDescription] = useState("");
-    const [priority, setPriority] = useState("lav");
-    
+    const [issueType, setIssueType] = useState("mangel"); // we use this to choose which
     const [bilde, setBilde] = useState(null); 
+
+    const priorityMap = {
+        "mangel": "lav",
+        "klima": "lav",
+        "skade": "middels",
+        "renhold": "middels",
+        "ødelagt": "kritisk"
+    }; // just a map we can get the type and seriousness matched. makes it easier too add more
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(bD)
+        const correctPriority = priorityMap[issueType];
+
         const formData = new FormData();
         formData.append("buildingID", bD);
         formData.append("roomID", rD);
@@ -21,10 +29,23 @@ export default function CaseForm({ chosenBuilding, chosenRoom, rD, bD }) {
         formData.append("email", email);
         formData.append("number", tlf); 
         formData.append("description", description);
-        formData.append("seriousness", priority); 
+        formData.append("seriousness", correctPriority); 
         
         if (bilde) {
             formData.append("bilde", bilde); 
+        }
+
+        try {
+            const res = await fetch('http://localhost:5000/api/createCase', {
+                method: 'POST',
+                body: formData 
+            }); 
+            
+            if(res.ok) {
+                console.log("Sak sendt inn med prioritet:", correctPriority);
+            }
+        } catch (error) {
+            console.error("Feil ved innsending:", error);
         }
 
         try {
@@ -38,8 +59,7 @@ export default function CaseForm({ chosenBuilding, chosenRoom, rD, bD }) {
             }
         } catch (error) {
             console.error("Feil ved innsending:", error);
-        }
-    }
+        }}
 
     return (
         <div className={style.container}>
@@ -78,15 +98,16 @@ export default function CaseForm({ chosenBuilding, chosenRoom, rD, bD }) {
 
                 <label className={style.label}>
                     Prioritet?*:
-                    <select className={style.select} value={priority} onChange={e => setPriority(e.target.value)}>
-                        <option value="lav">Lav</option>
-                        <option value="middels">Middels</option>
-                        <option value="kritisk">Kritisk</option>
+                    <select className={style.select} value={issueType} onChange={e => setIssueType(e.target.value)}>
+                        <option value="mangel">Mangel</option>
+                        <option value="klima">Klima</option>
+                        <option value="skade">Skade</option>
+                        <option value="renhold">Renhold</option>
+                        <option value="ødelagt">Ødelagt</option>
                     </select>
                 </label>
 
                 <button type="submit" className={style.knapp}>Send inn</button>
             </form>
         </div>
-    )
-}
+    )}
